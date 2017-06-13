@@ -1,0 +1,18 @@
+/* Empty. Add your own CSS if you like */
+.fade-in-out {
+  transition: 300ms ease all;
+  -webkit-transition: 300ms ease all;
+  -moz-transition: 300ms ease all;
+  max-height: 1000px;
+  /*opacity: 1;*/
+  /*height: 0;*/
+}
+
+.fade-in-out.ng-hide {
+    max-height: 0;
+    /*opacity: 0;*/
+}
+
+.bottom-bar {
+    transition: 300ms ease all;
+}

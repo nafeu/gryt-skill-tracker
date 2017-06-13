@@ -1,0 +1,59 @@
+  <ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-dark">
+      <h1 class="title">Add New Skill</h1>
+    </ion-header-bar>
+    <ion-content>
+
+    <form ng-submit="closeKeyboard()">
+    <input style="display: none;" type="submit">
+    <div class="list list-inset">
+
+      <div class="item item-divider">
+          Enter a name for your skill
+      </div>
+
+      <label class="item item-input">
+        <input type="text" placeholder="Skill Name" value="" ng-model="newSkillName" ng-change="resetCreateSkillMsg()">
+      </label>
+
+      <div class="item item-divider">
+          Starting Value
+      </div>
+
+    <div class="item button-bar">
+      <a class="button button-light">{{ newSkillInitVal }} hrs</a>
+      <a class="button button-light icon ion-arrow-up-a" ng-click="incrementInitVal()"></a>
+      <a class="button button-light icon ion-arrow-down-a" ng-click="decrementInitVal()"></a>
+    </div>
+
+      <div class="item item-divider">
+        Add subcategories for your skill (optional)
+      </div>
+      <label class="item item-input">
+        <input type="text" placeholder="Subcategory Name" ng-model="newSubSkillName">
+      </label>
+
+          <button class="button button-block button-positive" ng-click="addNewSubCat(newSubSkillName); newSubSkillName = null;">
+          Add Subcategory
+          </button>
+
+      <div class="item item-divider">
+          Subcategories:
+      </div>
+
+      <div class="item">
+        <p ng-if="newSkillSubCats.length < 1">(no subcategories added)</p>
+        <p ng-repeat="item in newSkillSubCats">{{item}}</p>
+      </div>
+          <button class="button button-block button-assertive" ng-click="addNewSkill(newSkillName); newSkillName = null;">
+          Confirm and Create Skill
+          </button>
+          <button class="button button-block button-light" ng-click="resetNewSkillVals(); newSkillName = null; newSubSkillName = null; closeModal();">
+          Cancel
+          </button>
+
+    </div>
+
+    </form>
+    </ion-content>
+  </ion-modal-view>

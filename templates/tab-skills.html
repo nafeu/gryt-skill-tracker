@@ -1,0 +1,178 @@
+<ion-view view-title="gryt | skill tracker">
+
+<ion-nav-buttons side="left">
+    <button class="button button-icon icon ion-ios-plus-outline"
+    ng-click="data.showReorder = false; resetNewSkillVals(); openModal()">
+    </button>
+</ion-nav-buttons>
+<ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-ios-minus{{data.deleteBtn}}"
+        ng-click="hideDetails(); data.showDelete = !data.showDelete; data.showReorder = false; data.reorderBtn = !data.reorderBtn; toggleDeleteBtn();">
+    </button>
+</ion-nav-buttons>
+
+<ion-content>
+
+<div class="list card">
+    <div class="item">
+        <h2>Improve your skills</h2>
+    </div>
+</div>
+
+<form ng-submit="closeKeyboard()">
+<input style="display: none;" type="submit">
+<ion-list show-delete="data.showDelete" show-reorder="data.showReorder">
+
+
+    <!-- main item section -->
+    <ion-item ng-repeat="item in skills"
+        item="item"
+        class="item-remove-animate">
+        <!-- item training button -->
+        <button ng-show="!item.edit"
+            style="font-size: 28px; margin-right: -34px; float: right;"
+            on-tap="generalTrain(item)" class="button button-light ion-flash">
+        </button>
+        <!-- item confirm edit -->
+        <button ng-show="item.edit"
+            style="font-size: 28px; margin-right: -34px; float: right;"
+            on-tap="editReset(skills, item);"
+            class="button button-light ion-checkmark">
+        </button>
+        <div
+            ng-show="!item.edit"
+            style="width: 300px; line-height: 25px; white-space: pre; color: {{item.gen_progress + item.init_progress|progColor}}; font-size: 20px;">{{ item.name }}</div>
+        <!-- edit section -->
+        <div ng-show="item.edit"
+            class="item item-input"
+            style="padding: 0; width: 90%; border: none;">
+            <i class="icon ion-edit placeholder-icon"></i>
+            <input ng-model="item.name"
+                type="text"
+                value="item.name"
+                style="padding: 0; font-size: 20px; color: #AAAAAA;">
+        </div>
+        <div style="margin-top: 5px; height: 3px; width: {{ item.gen_progress + item.init_progress|progPercent }}%; transition: width 0.3s; background: {{item.gen_progress + item.init_progress|progColor}};"></div>
+        <p style="margin-top: 3px; font-size: 12px; color: {{item.gen_progress + item.init_progress|progColor}};">
+            <div ng-show="item.edit" style="margin-top: 5px; height: 26px; color: {{item.gen_progress + item.init_progress|progColor}}">
+                <div style="float: left; padding: 1px 3px 1px 3px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; margin-right: 4px;">
+                    <a
+                        on-tap="addSubCatExist(item)"
+                        class="icon ion-plus"
+                        style="padding: 0px 3px 0px 3px; font-size: 12px;"> SUBCATEGORY</a>
+                </div>
+                <div style="float: left; padding: 1px 3px 1px 3px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; margin-right: 4px;">
+                    <a
+                        on-tap="confirmSkillReset(item)"
+                        class="icon ion-refresh"
+                        style="padding: 0px 3px 0px 3px; font-size: 12px;"> RESET</a>
+                </div>
+                <div style="float: left; padding: 1px 3px 1px 3px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}};">
+                    <a
+                        on-tap="generalRevert(item)"
+                        class="icon ion-arrow-down-a"
+                        style="padding: 0px 3px 0px 3px; font-size: 12px;"> {{ item.gen_progress + item.init_progress }} HRS</a>
+                </div>
+            </div>
+            <div ng-show="!item.edit" style="height: 24px; margin-top: 5px;">
+                <div style="float: left; padding: 1px 4px 1px 0px; border: 1px solid white; color: {{item.gen_progress + item.init_progress|progColor}};">
+                    <b>{{ item.gen_progress + item.init_progress }} HOURS</b>
+                </div>
+                <div style="float: left; padding: 1px 4px 1px 4px; margin-right: 4px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; background: {{item.gen_progress + item.init_progress|progColor}}; color: white;">
+                    <span ng-show="!item.edit"
+                        style="">LEVEL {{ item.gen_progress + item.init_progress|level }}
+                    </span>
+                </div>
+                <!-- edit button -->
+                <div on-tap="item.edit = !item.edit" ng-show="!item.edit" style="float: left; padding: 1px 4px 1px 4px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; color: {{item.gen_progress + item.init_progress|progColor}}; margin-right: 4px;">
+                    <i class="icon ion-edit"></i>
+                </div>
+                <!-- edit button end -->
+                <!-- elipses button -->
+                <div on-tap="item.showdetails = !item.showdetails" ng-show="!item.edit && item.showdetails && item.has_sub" style="float: left; padding: 1px 4px 1px 4px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; background: {{item.gen_progress + item.init_progress|progColor}}; color: white;">
+                    <i class="icon ion-more"></i>
+                </div>
+                <div on-tap="item.showdetails = !item.showdetails" ng-show="!item.edit && !item.showdetails && item.has_sub" style="float: left; padding: 1px 4px 1px 4px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; color: {{item.gen_progress + item.init_progress|progColor}};">
+                    <i class="icon ion-more"></i>
+                </div>
+                <!-- elipses button end -->
+            </div>
+        </p>
+        <!-- edit end -->
+        <!-- main item end -->
+
+
+        <!-- sub item section -->
+        <div>
+
+            <ul class="fade-in-out" style="font-size: 12px;" ng-show="item.showdetails">
+                <div style="height: 1px; margin-left: -100px; width: 300%; background: #DDDDDD; margin-top: 18px;"></div>
+                <li ng-repeat="subitem in item.subcat" style="white-space: initial; padding-bottom: 0px; color: {{item.gen_progress + item.init_progress|progColor}}; margin-top: 10px;">
+                    <span ng-show="!subitem.edit" style="font-size: 16px;">{{subitem.name}}</span>
+
+                    <!-- edit fields -->
+                    <div ng-show="subitem.edit" class="item item-input" style="padding: 0; border: none; width: 90%;">
+                        <i class="icon ion-edit placeholder-icon"></i>
+                        <input ng-model="subitem.name" type="text" value="subitem.name" style="padding: 0; font-size: 16px; color: #AAAAAA;">
+                    </div>
+                    <!-- edit fields end -->
+                    <div style="text-transform: uppercase; margin-top: 2px; margin-bottom: 3px; height: 3px; width: {{ subitem.sub_progress|progPercent }}%; transition: width 0.3s; background: {{item.gen_progress + item.init_progress|progColor}};"></div>
+
+                    <!-- sub item action buttons -->
+                    <div ng-show="!subitem.edit" style="margin-top: 5px; height: 26px; color: {{item.gen_progress + item.init_progress|progColor}}">
+                        <!-- edit button -->
+                        <div on-tap="subitem.edit = !subitem.edit" style="margin-right: 4px; float: left; padding: 1px 6px 1px 6px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}};">
+                            <i class="icon ion-edit"></i>
+                        </div>
+                        <!-- edit button end -->
+                        <div on-tap="subTrain(item, subitem)" style="margin-right: 4px; float: left; padding: 1px 3px 1px 3px; background: {{item.gen_progress + item.init_progress|progColor}}; color: white; border: 1px solid {{item.gen_progress + item.init_progress|progColor}};">
+                            <i class="icon ion-flash"></i> {{subitem.sub_progress|level}}
+                        </div>
+
+                        <div on-tap="subTrain(item, subitem)" style="float: left; padding: 1px 3px 1px 3px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; margin-right: 4px;">
+                            <i class="icon ion-arrow-up-a"></i><b> {{subitem.sub_progress}} HRS</b>
+                        </div>
+                    </div>
+
+                    <div ng-show="subitem.edit" style="margin-top: 5px; height: 26px; color: {{item.gen_progress + item.init_progress|progColor}}">
+
+                        <div on-tap="subRevert(item, subitem)" style="margin-right: 4px; float: left; padding: 1px 3px 1px 3px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}};">
+                            <a ng-show="subitem.edit" class="icon ion-arrow-down-a" style="font-size: 12px;"> {{subitem.sub_progress}} HRS</a>
+                        </div>
+
+                        <div on-tap="onSubItemDelete(item, subitem)" style="margin-right: 4px; float: left; padding: 1px 3px 1px 3px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}};">
+                            <a ng-show="subitem.edit" class="icon ion-close" style="font-size: 12px;"> DELETE</a>
+                        </div>
+
+                        <div on-tap="editReset(item.subcat, subitem)" style="margin-right: 4px; float: left; padding: 1px 3px 1px 3px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}};">
+                            <a ng-show="subitem.edit" class="icon ion-checkmark" style="font-size: 12px;"> CONFIRM CHANGES</a>
+                        </div>
+                    </div>
+
+                    <div style="margin-left: -100px; width: 300%; background: #DDDDDD;" ></div>
+                </li>
+
+            </ul>
+        </div>
+        <!-- sup item end -->
+
+        <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)"></ion-delete-button>
+        <ion-reorder-button class="ion-drag" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+    </ion-item>
+</ion-list>
+</form>
+
+</ion-content>
+<ion-footer-bar align-title="right" ng-init="editMsg = 'Edit Skills'; reorderMsg = 'Reorder'">
+    <a style=""
+    class="title button button-clear button-stable"
+    ng-click="
+    data.showReorder = !data.showReorder;
+    reorderMsg = (reorderMsg == 'Reorder') ? 'Save Ordering' : 'Reorder';
+    hideDetails();
+    ">
+    {{ reorderMsg }}
+    </a>
+</ion-footer-bar>
+
+</ion-view>
