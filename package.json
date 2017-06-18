@@ -1,0 +1,30 @@
+{
+  "name": "gryt-skill-tracker",
+  "version": "0.1.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "start": "electron .",
+    "build": "electron-packager . GrytSkillTracker"
+  },
+  "keywords": [
+    "gryt",
+    "skill",
+    "productivity",
+    "gamificiation"
+  ],
+  "author": "Nafeu Nasir",
+  "license": "MIT",
+  "dependencies": {
+    "chai": "^4.0.0",
+    "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
+    "mocha": "^3.4.2"
+  },
+  "devDependencies": {
+    "electron-packager": "^8.7.1",
+    "electron-prebuilt": "^1.4.13",
+    "electron-rebuild": "^1.5.11"
+  }
+}
