@@ -1,23 +1,18 @@
-<ion-view view-title="gryt | skill tracker">
+<ion-view view-title="GRYT Skill Tracker">
 
 <ion-nav-buttons side="left">
-    <button class="button button-icon icon ion-ios-plus-outline"
-    ng-click="data.showReorder = false; resetNewSkillVals(); openModal()">
-    </button>
 </ion-nav-buttons>
 <ion-nav-buttons side="right">
-    <button class="button button-icon icon ion-ios-minus{{data.deleteBtn}}"
-        ng-click="hideDetails(); data.showDelete = !data.showDelete; data.showReorder = false; data.reorderBtn = !data.reorderBtn; toggleDeleteBtn();">
-    </button>
 </ion-nav-buttons>
 
 <ion-content>
 
-<div class="list card">
-    <div class="item">
-        <h2>Improve your skills</h2>
-    </div>
-</div>
+<button class="button button-icon icon ion-ios-plus-outline"
+ng-click="data.showReorder = false; resetNewSkillVals(); openModal()">
+</button>
+<button class="button button-icon icon ion-ios-minus{{data.deleteBtn}} align-right"
+    ng-click="hideDetails(); data.showDelete = !data.showDelete; data.showReorder = false; data.reorderBtn = !data.reorderBtn; toggleDeleteBtn();">
+</button>
 
 <form ng-submit="closeKeyboard()">
 <input style="display: none;" type="submit">
@@ -105,7 +100,7 @@
         <!-- sub item section -->
         <div>
 
-            <ul class="fade-in-out" style="font-size: 12px;" ng-show="item.showdetails">
+            <ul style="font-size: 12px;" ng-show="item.showdetails">
                 <div style="height: 1px; margin-left: -100px; width: 300%; background: #DDDDDD; margin-top: 18px;"></div>
                 <li ng-repeat="subitem in item.subcat" style="white-space: initial; padding-bottom: 0px; color: {{item.gen_progress + item.init_progress|progColor}}; margin-top: 10px;">
                     <span ng-show="!subitem.edit" style="font-size: 16px;">{{subitem.name}}</span>

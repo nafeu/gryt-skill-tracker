@@ -1,4 +1,8 @@
 /* Empty. Add your own CSS if you like */
+body {
+  -webkit-app-region: drag
+}
+
 .fade-in-out {
   transition: 300ms ease all;
   -webkit-transition: 300ms ease all;
@@ -15,4 +19,13 @@
 
 .bottom-bar {
     transition: 300ms ease all;
+}
+
+.align-right {
+  float: right;
+}
+
+ion-header-bar {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
 }
