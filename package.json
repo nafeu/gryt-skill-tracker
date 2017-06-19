@@ -5,6 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec",
+    "package": "asar pack 'GRYT Skill Tracker-darwin-x64/GRYT Skill Tracker.app/Contents/Resources/app' 'GRYT Skill Tracker-darwin-x64/GRYT Skill Tracker.app/Contents/Resources/app.asar'",
     "start": "electron .",
     "build": "electron-packager . 'GRYT Skill Tracker' --ignore=node_mocules/electron-* && cp Icon.icns 'GRYT Skill Tracker-darwin-x64/GRYT Skill Tracker.app/Contents/Resources/electron.icns'"
   },
@@ -25,6 +26,7 @@
     "mocha": "^3.4.2"
   },
   "devDependencies": {
+    "asar": "^0.13.0",
     "electron-packager": "^8.7.1",
     "electron-prebuilt": "^1.4.13",
     "electron-rebuild": "^1.5.11"
