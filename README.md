@@ -2,7 +2,7 @@
 
 A simple gamification and tracking system for skills that are being learned or practiced.
 
-<img alt="GRYT Skill Tracker Screenshot" src="http://phrakture.com/images/github/gryt-skill-tracker-screenshot.png" width="400" valign="middle"/>
+<!-- <img alt="GRYT Skill Tracker Screenshot" src="http://phrakture.com/images/github/gryt-skill-tracker-screenshot.png" width="400" valign="middle"/> -->
 
 ## About
 
