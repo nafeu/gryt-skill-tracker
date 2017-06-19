@@ -1,6 +1,9 @@
+const Store = require("electron-store")
+const store = new Store();
+
 angular.module('starter.controllers', [])
 
-.controller('SkillsCtrl', function($scope, $ionicModal, $ionicPopup, $ionicListDelegate, $filter, $localStorage) {
+.controller('SkillsCtrl', function($scope, $ionicModal, $ionicPopup, $ionicListDelegate, $filter) {
 
   // Initilization Configurations
   $scope.shouldShowDelete = false;
@@ -320,7 +323,7 @@ angular.module('starter.controllers', [])
   };
 
   // Application Main
-  if ($localStorage.skills == null) {
+  if (store.get('skills') === undefined) {
       $scope.skills = [
 
         {
@@ -352,8 +355,12 @@ angular.module('starter.controllers', [])
             }
         }
       ];
-      $localStorage.skills = $scope.skills;
+      store.set('skills', $scope.skills);
   }
-  $scope.skills = $localStorage.skills;
+  $scope.skills = store.get('skills');
+
+  $scope.$watch("skills", function(newValue, oldValue) {
+    store.set('skills', newValue);
+  }, true);
 
 })
