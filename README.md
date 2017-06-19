@@ -10,7 +10,7 @@ This project is an old mobile-app and breakable toy project of mine from 2015 th
 
 ## Download
 
-A binary build for OSX WILL BE available in [releases](https://github.com/nafeu/gryt-skill-tracker/releases) ...
+The app is available for download in [releases](https://github.com/nafeu/gryt-skill-tracker/releases) (OSX only).
 
 ## Development
 
