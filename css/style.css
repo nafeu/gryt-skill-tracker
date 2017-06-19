@@ -29,3 +29,7 @@ ion-header-bar {
   -webkit-user-select: none;
   -webkit-app-region: drag;
 }
+
+.pointer, button, .button {
+  cursor: pointer !important;
+}

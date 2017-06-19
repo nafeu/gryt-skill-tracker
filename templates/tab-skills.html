@@ -53,19 +53,19 @@ ng-click="data.showReorder = false; resetNewSkillVals(); openModal()">
                 <div style="float: left; padding: 1px 3px 1px 3px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; margin-right: 4px;">
                     <a
                         on-tap="addSubCatExist(item)"
-                        class="icon ion-plus"
+                        class="pointer icon ion-plus"
                         style="padding: 0px 3px 0px 3px; font-size: 12px;"> SUBCATEGORY</a>
                 </div>
                 <div style="float: left; padding: 1px 3px 1px 3px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; margin-right: 4px;">
                     <a
                         on-tap="confirmSkillReset(item)"
-                        class="icon ion-refresh"
+                        class="pointer icon ion-refresh"
                         style="padding: 0px 3px 0px 3px; font-size: 12px;"> RESET</a>
                 </div>
                 <div style="float: left; padding: 1px 3px 1px 3px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}};">
                     <a
                         on-tap="generalRevert(item)"
-                        class="icon ion-arrow-down-a"
+                        class="pointer icon ion-arrow-down-a"
                         style="padding: 0px 3px 0px 3px; font-size: 12px;"> {{ item.gen_progress + item.init_progress }} HRS</a>
                 </div>
             </div>
@@ -79,15 +79,15 @@ ng-click="data.showReorder = false; resetNewSkillVals(); openModal()">
                     </span>
                 </div>
                 <!-- edit button -->
-                <div on-tap="item.edit = !item.edit" ng-show="!item.edit" style="float: left; padding: 1px 4px 1px 4px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; color: {{item.gen_progress + item.init_progress|progColor}}; margin-right: 4px;">
+                <div class="pointer" on-tap="item.edit = !item.edit" ng-show="!item.edit" style="float: left; padding: 1px 4px 1px 4px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; color: {{item.gen_progress + item.init_progress|progColor}}; margin-right: 4px;">
                     <i class="icon ion-edit"></i>
                 </div>
                 <!-- edit button end -->
                 <!-- elipses button -->
-                <div on-tap="item.showdetails = !item.showdetails" ng-show="!item.edit && item.showdetails && item.has_sub" style="float: left; padding: 1px 4px 1px 4px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; background: {{item.gen_progress + item.init_progress|progColor}}; color: white;">
+                <div class="pointer" on-tap="item.showdetails = !item.showdetails" ng-show="!item.edit && item.showdetails && item.has_sub" style="float: left; padding: 1px 4px 1px 4px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; background: {{item.gen_progress + item.init_progress|progColor}}; color: white;">
                     <i class="icon ion-more"></i>
                 </div>
-                <div on-tap="item.showdetails = !item.showdetails" ng-show="!item.edit && !item.showdetails && item.has_sub" style="float: left; padding: 1px 4px 1px 4px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; color: {{item.gen_progress + item.init_progress|progColor}};">
+                <div class="pointer" on-tap="item.showdetails = !item.showdetails" ng-show="!item.edit && !item.showdetails && item.has_sub" style="float: left; padding: 1px 4px 1px 4px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; color: {{item.gen_progress + item.init_progress|progColor}};">
                     <i class="icon ion-more"></i>
                 </div>
                 <!-- elipses button end -->
@@ -116,15 +116,15 @@ ng-click="data.showReorder = false; resetNewSkillVals(); openModal()">
                     <!-- sub item action buttons -->
                     <div ng-show="!subitem.edit" style="margin-top: 5px; height: 26px; color: {{item.gen_progress + item.init_progress|progColor}}">
                         <!-- edit button -->
-                        <div on-tap="subitem.edit = !subitem.edit" style="margin-right: 4px; float: left; padding: 1px 6px 1px 6px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}};">
+                        <div class="pointer" on-tap="subitem.edit = !subitem.edit" style="margin-right: 4px; float: left; padding: 1px 6px 1px 6px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}};">
                             <i class="icon ion-edit"></i>
                         </div>
                         <!-- edit button end -->
-                        <div on-tap="subTrain(item, subitem)" style="margin-right: 4px; float: left; padding: 1px 3px 1px 3px; background: {{item.gen_progress + item.init_progress|progColor}}; color: white; border: 1px solid {{item.gen_progress + item.init_progress|progColor}};">
+                        <div class="pointer" on-tap="subTrain(item, subitem)" style="margin-right: 4px; float: left; padding: 1px 3px 1px 3px; background: {{item.gen_progress + item.init_progress|progColor}}; color: white; border: 1px solid {{item.gen_progress + item.init_progress|progColor}};">
                             <i class="icon ion-flash"></i> {{subitem.sub_progress|level}}
                         </div>
 
-                        <div on-tap="subTrain(item, subitem)" style="float: left; padding: 1px 3px 1px 3px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; margin-right: 4px;">
+                        <div class="pointer" on-tap="subTrain(item, subitem)" style="float: left; padding: 1px 3px 1px 3px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}}; margin-right: 4px;">
                             <i class="icon ion-arrow-up-a"></i><b> {{subitem.sub_progress}} HRS</b>
                         </div>
                     </div>
@@ -132,15 +132,15 @@ ng-click="data.showReorder = false; resetNewSkillVals(); openModal()">
                     <div ng-show="subitem.edit" style="margin-top: 5px; height: 26px; color: {{item.gen_progress + item.init_progress|progColor}}">
 
                         <div on-tap="subRevert(item, subitem)" style="margin-right: 4px; float: left; padding: 1px 3px 1px 3px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}};">
-                            <a ng-show="subitem.edit" class="icon ion-arrow-down-a" style="font-size: 12px;"> {{subitem.sub_progress}} HRS</a>
+                            <a ng-show="subitem.edit" class="icon ion-arrow-down-a pointer" style="font-size: 12px;"> {{subitem.sub_progress}} HRS</a>
                         </div>
 
                         <div on-tap="onSubItemDelete(item, subitem)" style="margin-right: 4px; float: left; padding: 1px 3px 1px 3px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}};">
-                            <a ng-show="subitem.edit" class="icon ion-close" style="font-size: 12px;"> DELETE</a>
+                            <a ng-show="subitem.edit" class="icon ion-close pointer" style="font-size: 12px;"> DELETE</a>
                         </div>
 
                         <div on-tap="editReset(item.subcat, subitem)" style="margin-right: 4px; float: left; padding: 1px 3px 1px 3px; border: 1px solid {{item.gen_progress + item.init_progress|progColor}};">
-                            <a ng-show="subitem.edit" class="icon ion-checkmark" style="font-size: 12px;"> CONFIRM CHANGES</a>
+                            <a ng-show="subitem.edit" class="icon ion-checkmark pointer" style="font-size: 12px;"> CONFIRM CHANGES</a>
                         </div>
                     </div>
 
@@ -151,8 +151,8 @@ ng-click="data.showReorder = false; resetNewSkillVals(); openModal()">
         </div>
         <!-- sup item end -->
 
-        <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(item)"></ion-delete-button>
-        <ion-reorder-button class="ion-drag" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
+        <ion-delete-button class="ion-minus-circled pointer" ng-click="onItemDelete(item)"></ion-delete-button>
+        <ion-reorder-button class="ion-drag pointer" on-reorder="moveItem(item, $fromIndex, $toIndex)"></ion-reorder-button>
     </ion-item>
 </ion-list>
 </form>
