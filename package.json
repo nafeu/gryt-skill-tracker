@@ -6,8 +6,9 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec",
     "start": "electron .",
-    "build": "electron-packager . GrytSkillTracker"
+    "build": "electron-packager . 'GRYT Skill Tracker' --ignore=node_mocules/electron-* && cp Icon.icns 'GRYT Skill Tracker-darwin-x64/GRYT Skill Tracker.app/Contents/Resources/electron.icns'"
   },
+  "productName": "GRYT Skill Tracker",
   "keywords": [
     "gryt",
     "skill",
